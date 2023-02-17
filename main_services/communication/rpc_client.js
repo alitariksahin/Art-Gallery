@@ -35,7 +35,7 @@ class Client {
             }, {noAck: true});
             setTimeout(()=> {
                 resolve("timeout");
-            },500)
+            },3000)
         });
         
     }
