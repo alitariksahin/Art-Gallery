@@ -1,14 +1,11 @@
-
+const amqplib = require("amqplib");
 const uuid = require("uuid");
 
-class Client {
-    constructor(connection) {
-        this.connection = connection;
-    }
 
-    async sendAndConsume(payload){
-        const channel = await this.connection.createChannel();
-        const q = await channel.assertQueue(payload, {exclusive: true});
+ const sendAndConsume = async (payload) => {  
+        const connection = await amqplib.connect(process.env.RABBITMQ_URL)
+        const channel = await connection.createChannel();
+        const q = await channel.assertQueue("", {exclusive: true});
         channel.prefetch(1);
         const cid = uuid.v4();
         channel.sendToQueue("artist_queue", Buffer.from(JSON.stringify(payload)), {
@@ -16,8 +13,9 @@ class Client {
             correlationId: cid
         });
         return new Promise(resolve => {
-            channel.consume(payload, (msg) => {
+            channel.consume(q.queue, (msg) => {              
                 if (msg.properties.correlationId === cid) {
+                    connection.close();
                     resolve(JSON.parse(msg.content.toString()));                                
                 }
             }, {noAck: true});
@@ -27,6 +25,6 @@ class Client {
         });
         
     }
-}
 
-module.exports = Client;
+
+module.exports = sendAndConsume;

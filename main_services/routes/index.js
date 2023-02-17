@@ -1,16 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const Client = require("../communication/rpc_client");
+const sendAndConsume = require("../communication/rpc_client");
 
 
-module.exports = (connection) => {
+module.exports = () => {
     router.get("/", async (req, res, next) => {
         try {
-            const client = new Client(connection);
-
-            const namesResponse = await client.sendAndConsume("GETNAMES");
-            const artistsResponse = await client.sendAndConsume("GETLISTSHORT");
-            const artworksResponse = await client.sendAndConsume("GETALLARTWORK");
+            const namesResponse = await sendAndConsume("GETNAMES");
+            const artistsResponse = await sendAndConsume("GETLISTSHORT");
+            const artworksResponse = await sendAndConsume("GETALLARTWORK");
             const names = namesResponse === "timeout" ? [] : namesResponse;
             const artists = artistsResponse === "timeout" ? [] : artistsResponse;
             const artworks = artworksResponse === "timeout" ? [] : artworksResponse;
