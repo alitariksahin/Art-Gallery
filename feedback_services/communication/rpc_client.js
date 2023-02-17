@@ -3,7 +3,6 @@ const uuid = require("uuid");
 
 class Client {
     #cids = {}
-    #queues = {}
     constructor(connection) {
         this.connection = connection;
     }
@@ -15,8 +14,7 @@ class Client {
     }
 
     async send(payload, channel){
-        const q = await channel.assertQueue("", {exclusive: true});
-        this.#queues[payload] = q.queue;
+        const q = await channel.assertQueue(payload, {exclusive: true});
         channel.prefetch(1);
         const cid = uuid.v4();
         this.#cids[payload] = cid
@@ -28,7 +26,7 @@ class Client {
 
     async consume(payload, channel){
         return new Promise(resolve => {
-            channel.consume(this.#queues[payload], (msg) => {
+            channel.consume(payload, (msg) => {
                 if (msg.properties.correlationId === this.#cids[payload]) {
                     resolve(JSON.parse(msg.content.toString()));                                
                 }
