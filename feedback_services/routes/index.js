@@ -5,19 +5,18 @@ const Client = require("../communication/rpc_client");
 
 
 
-module.exports = () => {
+module.exports = (connection) => {
     
     router.get("/", async (req, res, next) => {
         try {
             const feedbackService = new FeedbackService();
-            const client = new Client();
-            const {channel, connection} = await client.connect();
+            const client = new Client(connection);
+            const channel= await client.connect();
             await client.send("GETNAMES" ,channel);           
             const artistsResponse = await client.consume("GETNAMES", channel); 
             const artists = artistsResponse === "timeout" ? [] : artistsResponse;
 
             const feedbacks = await feedbackService.getList();
-            client.disconnect(connection);
 
             res.render("layout", {
                 template: "feedback",

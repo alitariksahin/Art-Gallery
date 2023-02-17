@@ -1,16 +1,17 @@
-const amqplib = require("amqplib");
+
 const uuid = require("uuid");
 
 class Client {
     #cids = {}
     #queues = {}
-    constructor() {
+    constructor(connection) {
+        this.connection = connection;
     }
 
     async connect(){
-        const connection = await amqplib.connect(process.env.RABBITMQ_URL);
-        const channel = await connection.createChannel();
-        return {channel, connection};
+
+        const channel = await this.connection.createChannel();
+        return channel;
     }
 
     async send(payload, channel){

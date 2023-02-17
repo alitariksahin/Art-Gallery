@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const cors = require("cors");
+const amqplib = require("amqplib");
 app.use(cors());
 require("dotenv").config();
 
@@ -15,7 +16,10 @@ app.set("views", path.join(__dirname, "/views"));
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, "/static")));
 
-app.use("/", mainRouter());
+amqplib.connect(process.env.RABBITMQ_URL).then((connection) => {
+    app.use("/", mainRouter(connection));
+});
+
 app.use(errorHandler);
 
 

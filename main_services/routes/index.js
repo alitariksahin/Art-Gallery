@@ -3,11 +3,11 @@ const router = express.Router();
 const Client = require("../communication/rpc_client");
 
 
-module.exports = () => {
+module.exports = (connection) => {
     router.get("/", async (req, res, next) => {
         try {
-            const client = new Client();
-            const {channel, connection} = await client.connect();
+            const client = new Client(connection);
+            const channel = await client.connect();
 
             await client.send("GETNAMES" ,channel);
             await client.send("GETLISTSHORT" ,channel);
@@ -19,7 +19,6 @@ module.exports = () => {
             const names = namesResponse === "timeout" ? [] : namesResponse;
             const artists = artistsResponse === "timeout" ? [] : artistsResponse;
             const artworks = artworksResponse === "timeout" ? [] : artworksResponse;
-            client.disconnect(connection);
 
             res.render("layout", {
                 template: "home",
