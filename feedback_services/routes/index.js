@@ -10,10 +10,8 @@ module.exports = (connection) => {
     router.get("/", async (req, res, next) => {
         try {
             const feedbackService = new FeedbackService();
-            const client = new Client(connection);
-            const channel= await client.connect();
-            await client.send("GETNAMES" ,channel);           
-            const artistsResponse = await client.consume("GETNAMES", channel); 
+            const client = new Client(connection);       
+            const artistsResponse = await client.sendAndConsume("GETNAMES"); 
             const artists = artistsResponse === "timeout" ? [] : artistsResponse;
 
             const feedbacks = await feedbackService.getList();

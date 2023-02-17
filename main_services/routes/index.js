@@ -7,15 +7,10 @@ module.exports = (connection) => {
     router.get("/", async (req, res, next) => {
         try {
             const client = new Client(connection);
-            const channel = await client.connect();
 
-            await client.send("GETNAMES" ,channel);
-            await client.send("GETLISTSHORT" ,channel);
-            await client.send("GETALLARTWORK" ,channel);
-
-            const namesResponse = await client.consume("GETNAMES", channel);
-            const artistsResponse = await client.consume("GETLISTSHORT", channel);
-            const artworksResponse = await client.consume("GETALLARTWORK", channel);
+            const namesResponse = await client.sendAndConsume("GETNAMES");
+            const artistsResponse = await client.sendAndConsume("GETLISTSHORT");
+            const artworksResponse = await client.sendAndConsume("GETALLARTWORK");
             const names = namesResponse === "timeout" ? [] : namesResponse;
             const artists = artistsResponse === "timeout" ? [] : artistsResponse;
             const artworks = artworksResponse === "timeout" ? [] : artworksResponse;
