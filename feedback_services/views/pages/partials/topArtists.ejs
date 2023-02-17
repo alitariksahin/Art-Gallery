@@ -1,0 +1,21 @@
+<article class="artistslist jumbotron d-none d-sm-block">
+    <div class="container">
+        <div class="row">
+            <% topArtists.forEach(artist => { %>
+                <div class="col-md text-center">
+                <h4 class="artistslist-title"><%= artist.title %></h4>
+                <div class="artistslist-name">
+                    with
+                    <a href="/artists/<%= artist.shortname %>"><%= artist.name %></a>
+                </div>
+                <p class="artistslist-info mt-2">
+                    <a href="/artists/<%= artist.shortname %>">
+                        <img class="artistslist-img home-page-artists" src="/images/artists/<%= artist.shortname %>_tn.jpg"
+                            alt="Photo of <%= artist.name %>">
+                    </a>
+                </p>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</article>

@@ -1,0 +1,42 @@
+{
+  "artists": [
+    {
+      "title": "Cubist Artworks",
+      "name": "Pablo Picasso",
+      "shortname": "picasso",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia neque vitae quam gravida, eget pretium libero tempus. Donec dapibus ex ac dui fringilla facilisis. Cras vulputate sem sem, at egestas lorem facilisis sit amet. Nam aliquet mauris enim, et tristique magna faucibus id. Proin vel arcu elementum, facilisis erat a, commodo magna. Nulla laoreet sed nunc ac tincidunt.",
+      "description": "<p>Doner shank sausage fatback drumstick. Ham hock chuck landjaeger pork loin, cupim bresaola capicola flank t-bone brisket pig. Turducken shankle ham hock tail chuck sausage pork buffalo tenderloin rump ham andouille tongue beef ribs. Brisket tri-tip sirloin meatball turkey shoulder pancetta. Drumstick bacon sirloin pig ground round jerky fatback kielbasa boudin buffalo biltong. T-bone tri-tip ball tip ham, pancetta jowl short loin porchetta tenderloin shankle pastrami.</p>",
+      "artwork": [
+        "picasso_01_tn.jpg",
+        "picasso_02_tn.jpg",
+        "picasso_03_tn.jpg",
+        "picasso_04_tn.jpg"
+      ]
+    },
+    {
+      "title": "Post-Impressionist Artworks",
+      "name": "Van Gogh",
+      "shortname": "van-gogh",
+      "summary": "Phasellus ultrices mollis nisl quis lobortis. Nulla porta tincidunt imperdiet. Morbi molestie consectetur enim quis condimentum. Nunc suscipit, metus ut vehicula luctus, neque magna consectetur ipsum, quis condimentum mi quam non neque. Suspendisse ex tortor, ultrices posuere odio vel, rhoncus dictum tortor. Aenean ullamcorper, diam eu gravida placerat, leo nisi porta mi, sed feugiat velit ex sit amet felis. ",
+      "description": "<p>A Dutch Post-Impressionist painter who posthumously became one of the most famous and influential figures in Western art history. In a decade, he created about 2,100 artworks, including around 860 oil paintings, most of which date from the last two years of his life. They include landscapes, still lifes, portraits and self-portraits, and are characterised by bold colours and dramatic, impulsive and expressive brushwork that contributed to the foundations of modern art.</p>",
+      "artwork": [
+        "van-gogh_01_tn.jpg",
+        "van-gogh_02_tn.jpg",
+        "van-gogh_03_tn.jpg",
+        "van-gogh_04_tn.jpg"
+      ]
+    },
+    {
+      "title": "Surrealist Artworks",
+      "name": "Salvador Dali",
+      "shortname": "dali",
+      "summary": "Pellentesque dapibus, neque at laoreet tincidunt, elit neque iaculis est, sit amet lacinia est tortor vel ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas ut nisi sed leo pulvinar convallis. In hac habitasse platea dictumst. Maecenas egestas nulla quam, at aliquam ipsum semper vel. Vivamus vel vulputate augue. Sed feugiat, enim sed pellentesque porta, nisi augue hendrerit turpis, vel luctus nunc odio a diam. </p>",
+      "artwork": [
+        "dali_01_tn.jpg",
+        "dali_02_tn.jpg",
+        "dali_03_tn.jpg",
+        "dali_04_tn.jpg"
+      ]
+    }
+  ]
+}

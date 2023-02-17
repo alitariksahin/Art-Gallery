@@ -1,0 +1,25 @@
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-8">
+        <article class="artistslist maincontent">
+
+          <h1 class="artistslist-title"><%= artist.title %></h1>
+          <div class="artistslist-name">with
+            <a href="/artists/<%= artist.shortname %>"><%= artist.name %> Post</a>
+          </div>
+          <p class="artistslist-info mt-2"> <a href="/artists/<%= artist.shortname %>">
+            </a>
+            <img class="artistslist-img img-fluid" src="/images/artists/<%= artist.shortname %>.jpg"
+              alt="Photo of <%= artist.name %> Post">
+          </p>
+          <%- artist.description %>
+          <p></p>
+
+        </article>
+      </div>
+      <aside class="col-md-4">
+        <%- include('./partials/artworks') %> 
+      </aside>
+    </div>
+  </div>
