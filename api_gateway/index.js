@@ -53,6 +53,8 @@ app.listen(process.env.PORT || port, () => {
         try {
             await axios.get(process.env.URL.concat("/health"));
             await axios.get(process.env.URL);
+            await axios.get(process.env.ARTISTS_SERVICE_URL);
+            await axios.get(process.env.FEEDBACK_SERVICE_URL);
         }catch(err) {
         }
         
