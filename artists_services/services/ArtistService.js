@@ -98,16 +98,16 @@ class ArtistService {
     switch(event) {
       case "GETNAMES":
         const names = await this.getNames();
-        return JSON.stringify(names);
+        return names;
       case "GETALLARTWORK":
         const allArtwork = await this.getAllArtwork();
-        return JSON.stringify(allArtwork);
+        return allArtwork;
       case "GETLISTSHORT":
         const listShort= await this.getListShort();
-        return JSON.stringify(listShort);
+        return listShort;
       case "GETLIST":
         const list= await this.getList();
-        return JSON.stringify(list);
+        return list;
     }
     return {msg: "no such event or artist"};
 

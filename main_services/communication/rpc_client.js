@@ -1,10 +1,8 @@
-const amqplib = require("amqplib");
+
 const uuid = require("uuid");
 
 
- const sendAndConsume = async (payload) => {  
-        const connection = await amqplib.connect(process.env.RABBITMQ_URL)
-        const channel = await connection.createChannel();
+ const sendAndConsume = async (payload, channel) => {  
         const q = await channel.assertQueue("", {exclusive: true});
         channel.prefetch(1);
         const cid = uuid.v4();
@@ -15,7 +13,6 @@ const uuid = require("uuid");
         return new Promise(resolve => {
             channel.consume(q.queue, (msg) => {              
                 if (msg.properties.correlationId === cid) {
-                    connection.close();
                     resolve(JSON.parse(msg.content.toString()));                                
                 }
             }, {noAck: true});
